@@ -1,9 +1,9 @@
 resource "aws_instance" "web" {
-    count = 2
+    count = length(var.name)
   ami           = var.ami
   instance_type = var.instance_type
 
   tags = {
-    Name = "${count.index+1}"
+    Name = var.name[count.index]
   }
 }
