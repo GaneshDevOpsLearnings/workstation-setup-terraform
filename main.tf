@@ -2,6 +2,7 @@ resource "aws_instance" "web" {
     count = length(var.name)
   ami           = var.ami
   instance_type = var.instance_type
+  vpc_security_group_ids = [aws_security_group.allow_all.id]
 
   tags = {
     Name = var.name[count.index]
